@@ -11,7 +11,6 @@ namespace HubDeJogos.Entities
         public static void MenuInicial(List<Account> jogadores, string Filepath)
         {
 
-
             int option;
 
             do

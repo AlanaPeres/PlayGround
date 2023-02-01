@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
+using HubDeJogos.Entities.Json;
 
 
 namespace HubDeJogos.Entities
@@ -32,13 +33,7 @@ namespace HubDeJogos.Entities
         }
 
         public override string ToString() => $"User: {User} | Pontos Jogo da Velha {VitoriaTicTacToe} | Pontos Batalha Naval {VitoriaNavalBattle} | Pontos Jogo de Xadrez{VitoriaChess} ";
-
-        public static void SerializeJson(List<Account> jogadores, string Filepath)
-        {
-            string jsonString = JsonSerializer.Serialize(jogadores);
-
-            File.WriteAllText(Filepath, jsonString);
-        }
+       
 
         public static void CreateNewAccount(List<Account> jogadores, string Filepath)
         {
@@ -75,7 +70,7 @@ namespace HubDeJogos.Entities
             {
                 Account newAccount = new Account(user, email, password);
                 jogadores.Add(newAccount);
-                SerializeJson(jogadores, Filepath);
+                Entities.SerializeJson(jogadores, Filepath);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Conta cadastrada com sucesso! ");
                 Console.ResetColor();
