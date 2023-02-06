@@ -96,7 +96,7 @@ namespace HubDeJogos.Entities
             Console.WriteLine("\n\n");
 
             Console.WriteLine("\nDigite o login do Jogador 1 ((X))");
-            Velha.Player1 = Console.ReadLine() + "(X)";
+            Velha.Player1 = Console.ReadLine();
             Console.WriteLine("SENHA: ");
             string senha = Console.ReadLine();
 
@@ -113,7 +113,7 @@ namespace HubDeJogos.Entities
             }
 
             Console.WriteLine("Digite o login do Jogador 2 ((O))");
-            Velha.Player2 = Console.ReadLine() + "(O)";
+            Velha.Player2 = Console.ReadLine();
             Console.WriteLine("SENHA: ");
             string senha2 = Console.ReadLine();
 

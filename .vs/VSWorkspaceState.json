@@ -3,11 +3,9 @@
     "",
     "\\HubDeJogos",
     "\\HubDeJogos\\Entities",
-    "\\HubDeJogos\\Entities\\Chess",
-    "\\HubDeJogos\\Entities\\Json",
-    "\\HubDeJogos\\obj",
-    "\\HubDeJogos\\Properties"
+    "\\HubDeJogos\\Entities\\BattleShip",
+    "\\HubDeJogos\\Entities\\TicTacToe"
   ],
-  "SelectedNode": "\\HubDeJogos\\Entities\\Json\\Json.cs",
+  "SelectedNode": "\\HubDeJogos\\Entities\\Chess",
   "PreviewInSolutionExplorer": false
 }
