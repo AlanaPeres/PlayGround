@@ -6,8 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
-using HubDeJogos.Entities.Json;
-
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 
 namespace HubDeJogos.Entities
 {
@@ -33,7 +33,13 @@ namespace HubDeJogos.Entities
         }
 
         public override string ToString() => $"User: {User} | Pontos Jogo da Velha {VitoriaTicTacToe} | Pontos Batalha Naval {VitoriaNavalBattle} | Pontos Jogo de Xadrez{VitoriaChess} ";
-       
+
+        public static void SerializeJson(List<Account> jogadores, string Filepath)
+        {
+            string jsonString = JsonSerializer.Serialize(jogadores);
+
+            File.WriteAllText(Filepath, jsonString);
+        }
 
         public static void CreateNewAccount(List<Account> jogadores, string Filepath)
         {
@@ -49,20 +55,20 @@ namespace HubDeJogos.Entities
             int vitoriaChess = 0;
 
 
-            int shearch = jogadores.FindIndex(x => x.User == user);
+            int shearch = jogadores.FindIndex(x => x.User == user );
             int shearch2 = jogadores.FindIndex(y => y.Email == email);
 
             if (shearch != -1)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Nome de usuário indisponível");
+                Console.WriteLine("Nome de usuário indisponível.");
                 Console.ResetColor();
                 Thread.Sleep(3000);
             }
             else if (shearch2 != -1)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("E-mail já cadastrado");
+                Console.WriteLine("E-mail já cadastrado.");
                 Console.ResetColor();
                 Thread.Sleep(3000);
             }
@@ -70,7 +76,7 @@ namespace HubDeJogos.Entities
             {
                 Account newAccount = new Account(user, email, password);
                 jogadores.Add(newAccount);
-                Entities.SerializeJson(jogadores, Filepath);
+                SerializeJson(jogadores, Filepath);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Conta cadastrada com sucesso! ");
                 Console.ResetColor();
@@ -80,18 +86,16 @@ namespace HubDeJogos.Entities
 
         }
 
+
         public static void UpdatePassword(List<Account> jogadores, string Filepath)
         {
             Console.WriteLine("ALTERAR SENHA\n");
-
             Console.WriteLine("Confirme seu e-mail: ");
             string email = Console.ReadLine();
-
             Console.WriteLine("Senha atual: ");
             string senhaAtual = Console.ReadLine();
             Console.WriteLine("Nova Senha: ");
             string novaSenha = Console.ReadLine();
-
             int shearch = jogadores.FindIndex(x => x.User == senhaAtual);
 
 
@@ -118,19 +122,16 @@ namespace HubDeJogos.Entities
 
         public static void Login(List<Account> jogadores, string Filepath)
         {
-            Console.WriteLine("\nPara iniciar uma nova partida é necessário dois jogadores. ");
-            Console.WriteLine("Entre com o usuário de cada jogador: ");
-            Console.WriteLine("\nLOGIN JOGADOR 1: ");
+            //Console.WriteLine("\nPara iniciar uma nova partida é necessário dois jogadores. ");
+            //Console.WriteLine("Entre com o usuário de cada jogador: ");
+            Console.WriteLine("\nLOGIN: ");
             string jogador1 = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\nLOGIN JOGADOR 2: ");
-            string jogador2 = Console.ReadLine();
-            Console.ResetColor();
+            Console.WriteLine("\nSENHA: ");
+            string senha1 = Console.ReadLine();
+            int buscarIndex = jogadores.FindIndex(x => x.User == jogador1 && x.Password == senha1);
+            
 
-            int buscarIndex = jogadores.FindIndex(x => x.User == jogador1);
-            int buscaIndex2 = jogadores.FindIndex(x => x.User == jogador2);
-
-            if (buscarIndex != -1 && buscaIndex2 != -1)
+            if (buscarIndex != -1 )
             {
                 Menu.MenuHub(jogadores, Filepath);
 
@@ -145,6 +146,32 @@ namespace HubDeJogos.Entities
                 Thread.Sleep(3000);
 
             }
+
+            //Console.ForegroundColor = ConsoleColor.Cyan;
+            //Console.WriteLine("\nLOGIN JOGADOR 2: ");
+            //string jogador2 = Console.ReadLine();
+            //Console.WriteLine("\nSENHA: ");
+            //string senha2 = Console.ReadLine();
+            //Console.ResetColor();
+
+            //int buscaIndex2 = jogadores.FindIndex(x => x.User == jogador2 && x.Password == senha2);
+
+
+            //if (buscaIndex2 != -1)
+            //{
+            //    Menu.MenuHub(jogadores, Filepath);
+
+            //}
+            //else
+            //{
+
+            //    Console.ForegroundColor = ConsoleColor.Red;
+            //    Console.WriteLine("Não foi possível inicar partida.");
+            //    Console.WriteLine("Usuário não encontrado. Volte e cadastre os jogadores.");
+            //    Console.ResetColor();
+            //    Thread.Sleep(3000);
+
+            //}
 
         }
 

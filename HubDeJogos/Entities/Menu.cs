@@ -28,7 +28,7 @@ namespace HubDeJogos.Entities
                 Console.ResetColor();
                 Console.WriteLine("\n0 - Encerrar Programa");
                 Console.WriteLine("1 - Cadastrar novo jogador.");
-                Console.WriteLine("2 - Jogar.");
+                Console.WriteLine("2 - Login.");
 
                 option = int.Parse(Console.ReadLine());
 

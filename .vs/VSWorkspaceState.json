@@ -2,11 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\HubDeJogos",
-    "\\HubDeJogos\\Hub",
-    "\\HubDeJogos\\Hub\\BattleShip",
+    "\\HubDeJogos\\Entities",
+    "\\HubDeJogos\\Entities\\Chess",
+    "\\HubDeJogos\\Entities\\Json",
     "\\HubDeJogos\\obj",
     "\\HubDeJogos\\Properties"
   ],
-  "SelectedNode": "\\HubDeJogos\\Hub\\BattleShip\\StatusTabuleiro.cs",
+  "SelectedNode": "\\HubDeJogos\\Entities\\Json\\Json.cs",
   "PreviewInSolutionExplorer": false
 }

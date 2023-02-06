@@ -95,11 +95,39 @@ namespace HubDeJogos.Entities
             Console.ResetColor();
             Console.WriteLine("\n\n");
 
-            Console.WriteLine("\nDigite o nome do Jogador 1 ((X))");
+            Console.WriteLine("\nDigite o login do Jogador 1 ((X))");
             Velha.Player1 = Console.ReadLine() + "(X)";
+            Console.WriteLine("SENHA: ");
+            string senha = Console.ReadLine();
 
-            Console.WriteLine("Digite o nome do Jogador 2 ((O))");
+            int shearch = jogadores.FindIndex(x => x.User == Velha.Player1 && x.Password == senha);
+
+            while(shearch == -1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Não foi possível iniciar partida.");
+                Console.WriteLine("MOTIVO: usuário ou senha inválidos.");
+                Console.ResetColor();
+                Thread.Sleep(3000);
+                InputPlayer(jogadores,Filepath);
+            }
+
+            Console.WriteLine("Digite o login do Jogador 2 ((O))");
             Velha.Player2 = Console.ReadLine() + "(O)";
+            Console.WriteLine("SENHA: ");
+            string senha2 = Console.ReadLine();
+
+            int shearch2 = jogadores.FindIndex(x => x.User == Velha.Player2 && x.Password == senha2);
+
+            while (shearch2 == -1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Não foi possível iniciar partida.");
+                Console.WriteLine("MOTIVO: usuário ou senha inválidos.");
+                Console.ResetColor();
+                Thread.Sleep(3000);
+                InputPlayer(jogadores, Filepath);
+            }
 
             ShowBoard(jogadores, Filepath);
         }
@@ -120,7 +148,6 @@ namespace HubDeJogos.Entities
             int option;
             do
             {
-
 
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;

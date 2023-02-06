@@ -11,8 +11,20 @@ namespace Csharp_PlayGround
 {
     internal class Program
     {
+        static void DeserializeJson(List<Account> jogadores, string Filepath)
+        {
+            string jsonstring = File.ReadAllText(Filepath);
 
-        
+            if (!String.IsNullOrEmpty(Filepath))
+            {
+                List<Account> allplayers = JsonSerializer.Deserialize<List<Account>>(jsonstring);
+
+                allplayers.ForEach(usuario => jogadores.Add(usuario));
+            }
+
+        }
+
+
         static void Main(string[] args)
         {
 

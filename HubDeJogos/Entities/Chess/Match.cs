@@ -1,4 +1,4 @@
-﻿
+﻿using System.Threading;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,11 +104,40 @@ namespace HubDeJogos.Entities
             Console.ResetColor();
             Console.WriteLine("\n");
 
-            Console.WriteLine("Digite o nome do Jogador 1 ((Peças Bancas))");
+            Console.WriteLine("Digite o User do Jogador 1 ((Peças Bancas))");
             Jogador1 = Console.ReadLine();
+            Console.WriteLine("\nSENHA: ");
+            string senha = Console.ReadLine();
+            int shearch = jogadores.FindIndex(x => x.User == Jogador1 && x.Password == senha);
 
-            Console.WriteLine("Digite o nome do Jogador 2 ((Peças Pretas))");
+            while (shearch == -1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Não foi possível iniciar partida.");
+                Console.WriteLine("MOTIVO: usuário ou senha inválidos.");
+                Console.ResetColor();
+                Thread.Sleep(3000);
+                InputPlayer(jogadores, Filepath);
+            }
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\nDigite o User do Jogador 2 ((Peças Pretas))");
             Jogador2 = Console.ReadLine();
+            Console.WriteLine("\nSENHA: ");
+            string senha2 = Console.ReadLine();
+            Console.ResetColor();
+
+            int shearch2 = jogadores.FindIndex(x => x.User == Jogador2 && x.Password == senha2);
+
+            while (shearch2 == -1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Não foi possível iniciar partida.");
+                Console.WriteLine("MOTIVO: usuário ou senha inválidos.");
+                Console.ResetColor();
+                Thread.Sleep(3000);
+                InputPlayer(jogadores, Filepath);
+            }
 
             Console.Clear();
             
